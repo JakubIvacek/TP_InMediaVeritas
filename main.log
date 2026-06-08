@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.8)  4 JUN 2026 17:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.5)  8 JUN 2026 16:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/ivace/Desktop/TP_InMediaVeritas/main.tex
-(c:/Users/ivace/Desktop/TP_InMediaVeritas/main.tex
+**c:/Users/ivace/Documents/TP_InMediaVeritas/main.tex
+(c:/Users/ivace/Documents/TP_InMediaVeritas/main.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-24>
+L3 programming layer <2026-01-19>
 (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
@@ -48,7 +48,7 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\times.sty
 Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
 ) (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ) (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
@@ -68,7 +68,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 )) (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
@@ -87,7 +87,7 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 \Hy@linkcounter=\count288
 \Hy@pagecounter=\count289
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
@@ -95,23 +95,23 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count290
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
+Package hyperref Info: Bookmarks ON on input line 4468.
 \c@Hy@tempcnt=\count291
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
+LaTeX Info: Redefining \url on input line 4807.
 \XeTeXLinkMargin=\dimen158
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -121,20 +121,20 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count292
 \Field@Width=\dimen159
 \Fld@charsize=\dimen160
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
 \Hy@abspage=\count293
 \c@Item=\count294
 \c@Hfootnote=\count295
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
 \Fld@listcount=\count296
 \c@bookmark@seq@number=\count297
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
@@ -406,7 +406,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
 ) [1
 
 {C:/Users/ivace/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
-<tp.jpg, id=125, 963.6pt x 1044.90375pt>
+<tp.jpg, id=129, 963.6pt x 1044.90375pt>
 File: tp.jpg Graphic file (type jpg)
 <use tp.jpg>
 Package pdftex.def Info: tp.jpg  used on input line 164.
@@ -421,39 +421,59 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 23
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [4] [5]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 361.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 350.
  (C:\Users\ivace\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [6
+)
+Overfull \hbox (2.42773pt too wide) in paragraph at lines 349--353
+\OT1/ptm/m/n/10.95 (-20) On-chain gas mea-sure-ments were per-formed on the Remix VM (So-lid-ity 0.8.13, op-ti-mizer en-abled, \OT1/pcr/m/n/10.95 runs\OT1/ptm/m/n/10.95 (-20) =200,
+ []
+
+[6
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.401 \end{table}
-                 ] [7
+l.394 
+      ]
+Overfull \hbox (8.41637pt too wide) in paragraph at lines 418--422
+\OT1/ptm/m/n/10.95 (-20) 10 gwei the cor-re-spond-ing ETH cost per call is also shown. View func-tions (e.g. \OT1/pcr/m/n/10.95 getEvent\OT1/ptm/m/n/10.95 (-20) , \OT1/pcr/m/n/10.95 getMediaItem\OT1/ptm/m/n/10.95 (-20) )
+ []
+
+[7
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.469 \bibitem{gabizon2019}
-                           ] [8] (main.aux)
+l.470 T
+       he verification cost was measured by deploying the SnarkJS-generated ...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.470 T
+       he verification cost was measured by deploying the SnarkJS-generated ...] [8
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.550 
+      ] [9] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-24>
+L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E646F4CEE130C36AA5D89AFD50D99009;3935.
+(rerunfilecheck)             Checksum: 015BE66A4B7E758AB46B10214C5667B7;4109.
  ) 
 Here is how much of TeX's memory you used:
- 12852 strings out of 467872
- 201733 string characters out of 5418392
- 654559 words of memory out of 5000000
- 41306 multiletter control sequences out of 15000+600000
- 657465 words of font info for 218 fonts, out of 8000000 for 9000
+ 12870 strings out of 467867
+ 202029 string characters out of 5418335
+ 654755 words of memory out of 5000000
+ 41322 multiletter control sequences out of 15000+600000
+ 658424 words of font info for 223 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,1234b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 259416 bytes).
+ 75i,8n,79p,1236b,587s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/ivace/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (9 pages, 296090 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
- 45270 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 236 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
+ 45790 words of extra memory for PDF output out of 51595 (max. 10000000)
 

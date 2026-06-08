@@ -334,72 +334,177 @@ via ethers.js and with the IPFS node via the Helia HTTP API.
 
 
 % ----------------------------------------------------------------
+% ----------------------------------------------------------------
 \section{Evaluation}
 
 We evaluated the key performance characteristics of the \textit{inMediaVeritas}
-proof-of-concept on the Ethereum Sepolia testnet.
-Smart contract gas costs were measured using Hardhat's built-in gas reporter;
-zk-SNARK timings were measured using the SnarkJS CLI on two hardware platforms.
+proof-of-concept. On-chain gas costs were measured on a local EVM (the Remix
+JavaScript VM), which executes identical bytecode and charges identical gas to
+a public network such as Sepolia; the measured values are therefore
+representative of mainnet/testnet execution. zk-SNARK proof generation was
+measured using the SnarkJS CLI.
 
 \subsection{Experimental Setup}
 
-Measurements were collected on two platforms:
+On-chain gas measurements were performed on the Remix VM
+(Solidity~0.8.13, optimizer enabled, \texttt{runs}=200, \texttt{viaIR}=true).
+zk-SNARK proof generation was measured with SnarkJS~v0.7.6 (Node.js~20.17.0)
+using the Groth16 proving system on the following platform:
 \begin{itemize}[noitemsep]
-  \item \textbf{Desktop}: [TODO: CPU, RAM, OS]
-  \item \textbf{Mobile}: [TODO: device model, Android version]
+  \item \textbf{Desktop}: AMD Ryzen~5 7600X (6~cores / 12~threads, 4.7~GHz),
+        32~GB RAM, Windows~11 with WSL~2 (Ubuntu).
 \end{itemize}
-All on-chain measurements target the Ethereum Sepolia testnet
-(Solidity~[TODO], Hardhat~v[TODO], SnarkJS~v[TODO]).
+The proving curve is BN254 (alt\_bn128); the Baby JubJub curve is used only as
+the embedded curve inside the circuits.
 
 \subsection{zk-SNARK Proof Generation}
 
-The location circuit is compiled with the Groth16 proving scheme over the
-Baby JubJub curve and contains approximately [TODO]~arithmetic constraints.
-Table~\ref{tab:snark} reports witness generation and proof generation times
-on each platform.
-The final proof is 192~bytes and is submitted on-chain as part of the
-\texttt{submitWitnessVote} transaction.
+The identity circuit is compiled with the Groth16 proving scheme and contains
+approximately 7\,680 arithmetic constraints.
+Table~\ref{tab:snark} reports witness generation and proof generation times.
+The final Groth16 proof is 192~bytes and is submitted on-chain as part of the
+\texttt{voteOnMediaWithProof} transaction.
 
 \begin{table}[ht]
 \centering
 \small
-\caption{zk-SNARK proof generation time (Groth16, location circuit, [TODO]~constraints).}%
+\caption{zk-SNARK proof generation time (Groth16, cold run, SnarkJS~v0.7.6).}%
 \label{tab:snark}
 \begin{tabular}{lrrr}
 \toprule
-Platform & Witness gen.\ (s) & Proof gen.\ (s) & Total (s) \\
+Circuit & Witness gen.\ (s) & Proof gen.\ (s) & Total (s) \\
 \midrule
-Desktop  & [TODO] & [TODO] & [TODO] \\
-Android  & [TODO] & [TODO] & [TODO] \\
+Identity & 1.121 & 1.454 & 2.575 \\
+Location & 0.951 & 1.411 & 2.362 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The reported times correspond to a cold run, in which the dominant component is
+Node.js startup (approximately 0.9~s); the cryptographic work itself accounts
+for under 0.5~s. In a production setting with a long-running Node process this
+overhead is amortised, reducing proof generation to an estimated 0.3--0.5~s per
+proof. Repeated proving within the same session likewise benefits from the
+operating system file cache. The two circuits exhibit similar costs, consistent
+with their comparable constraint counts; the location circuit is marginally
+faster despite producing a larger public input vector. The measurements were
+obtained on a high-performance desktop CPU; on weaker laptop-class hardware the
+same circuits are expected to take several seconds per cold proof, which remains
+acceptable for an interactive client-side proving workflow.
+
+Circuit setup (Table~\ref{tab:setup}) is performed only once per circuit; every
+subsequent proof requires only witness calculation and proving.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{One-time circuit setup cost (performed once per circuit).}%
+\label{tab:setup}
+\begin{tabular}{lrr}
+\toprule
+Phase & Identity (s) & Location (s) \\
+\midrule
+Circom compilation (r1cs + wasm) & 1.872 & 1.811 \\
+Groth16 setup (zkey)             & 4.877 & 4.419 \\
+zkey contribution                & 1.675 & 1.704 \\
+\midrule
+Total setup                      & 8.424 & 7.934 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{On-Chain Gas Costs}
 
-Table~\ref{tab:gas} reports the gas consumed by each key protocol operation,
-measured across [TODO]~test transactions on Sepolia.
-At a reference gas price of 10~gwei the ETH cost per call is also shown.
-The dominant cost is on-chain SNARK verification, which accounts for
-approximately [TODO]\% of the total per-vote gas expenditure.
+Table~\ref{tab:gas} reports the gas consumed by each state-changing protocol
+operation. At a reference gas price of 10~gwei the corresponding ETH cost per
+call is also shown. View functions (e.g.\ \texttt{getEvent},
+\texttt{getMediaItem}) are omitted, as they incur no gas when called off-chain.
+
+Three effects are visible in the data. First, the cost of \texttt{createEvent}
+scales approximately linearly with the number of attached media items
+($\approx$150--170k gas per item), reflecting the on-chain storage of media
+metadata strings. Second, voting cost depends on storage warmth: the first vote
+on a given event initialises its counters from zero (cold
+$0\rightarrow1$ storage writes, $\approx$20k gas each), whereas a subsequent
+vote on the same event updates already-nonzero counters at a reduced cost,
+lowering the per-vote cost from $\approx$95k to $\approx$61k gas. Third, the
+\texttt{isLocalVoter} flag adds the cost of one additional counter update: when
+set, the vote increments a separate local-tally counter, and initialising that
+counter from zero adds a further $\approx$20k gas. This explains why the two
+\texttt{voteOnMedia} measurements differ in the opposite direction to
+\texttt{voteOnEvent}: the first \texttt{voteOnMedia} call was cast with
+\texttt{isLocalVoter} disabled (76\,190~gas), while the second enabled it,
+incurring the additional cold local-counter write (81\,307~gas).
 
 \begin{table}[ht]
 \centering
 \small
-\caption{Gas consumption per protocol operation (Sepolia testnet, mean over [TODO]~runs).}%
+\caption{Gas consumption per protocol operation (Remix VM, Solidity 0.8.13, optimizer on).}%
 \label{tab:gas}
 \begin{tabular}{lrr}
 \toprule
 Operation & Gas (units) & ETH at 10~gwei \\
 \midrule
-\texttt{submitEvent}         & [TODO] & [TODO] \\
-\texttt{verifyLocationProof} & [TODO] & [TODO] \\
-\texttt{submitWitnessVote}   & [TODO] & [TODO] \\
-\texttt{resolveEvent}        & [TODO] & [TODO] \\
+Contract deployment                       & 1\,649\,455 & 0.016495 \\
+\texttt{createEvent} (0 media)            &   280\,774 & 0.002808 \\
+\texttt{createEvent} (1 media)            &   450\,615 & 0.004506 \\
+\texttt{createEvent} (3 media)            &   735\,659 & 0.007357 \\
+\texttt{addMediaItem}                     &   212\,567 & 0.002126 \\
+\texttt{voteOnEvent} (first, local)       &    95\,533 & 0.000955 \\
+\texttt{voteOnEvent} (subsequent, local)  &    61\,333 & 0.000613 \\
+\texttt{voteOnMedia} (first, non-local)   &    76\,190 & 0.000762 \\
+\texttt{voteOnMedia} (subsequent, local)  &    81\,307 & 0.000813 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+\subsection{zk-Enabled Voting Cost}
+
+The figures in Table~\ref{tab:gas} correspond to the non-zk (demonstration)
+voting mode, in which the voter hash and locality flag are supplied directly.
+In the zk-enabled mode, a vote is submitted via \texttt{voteOnMediaWithProof},
+whose cost is the sum of the storage-update cost measured above ($\approx$76k
+gas) and the cost of on-chain Groth16 proof verification performed by the
+verifier contract.
+
+The verification cost was measured by deploying the SnarkJS-generated Solidity
+verifier (via \texttt{snarkjs zkey export solidityverifier}) for each circuit
+and submitting a real proof produced by the proving pipeline. Both proofs
+verified successfully on-chain. Table~\ref{tab:zkverify} reports the measured
+verification cost; the figures correspond to the EVM execution cost, which is
+the relevant quantity when \texttt{verifyProof} is invoked internally by
+\texttt{voteOnMediaWithProof} rather than as a standalone transaction.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{On-chain Groth16 proof verification cost (Remix VM, BN254 curve).}%
+\label{tab:zkverify}
+\begin{tabular}{lrr}
+\toprule
+Circuit & Public inputs & \texttt{verifyProof} gas \\
+\midrule
+Identity & 5 & 214\,787 \\
+Location & 7 & 227\,978 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As expected for Groth16 on the BN254 curve, verification is dominated by the
+three elliptic-curve pairing operations and is largely independent of the
+circuit's internal size; the small difference between the two circuits
+($\approx$13k gas) reflects the two additional public inputs of the location
+circuit, each of which adds one scalar multiplication to the linear combination
+of the verification key ($\approx$6.5k gas per input).
+
+Combining these results, the end-to-end cost of a zk-enabled media vote is
+approximately $214\,787 + 76\,190 \approx 291\,000$~gas for the identity circuit
+(and $227\,978 + 76\,190 \approx 304\,000$~gas for the location circuit), of
+which proof verification accounts for roughly 74\,--\,75\%. On-chain proof
+verification, rather than state storage, is therefore the dominant cost in the
+privacy-preserving voting path. At a reference gas price of 10~gwei this
+corresponds to approximately $0.0029$~ETH per zk-enabled vote.
+% ----------------------------------------------------------------
 % ----------------------------------------------------------------
 \section{Discussion and Limitations}
 
